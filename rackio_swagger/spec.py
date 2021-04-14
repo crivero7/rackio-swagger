@@ -67,7 +67,72 @@ swagger = {
                 "tags": ["users"]
             }
         },
-        
+        "/users/columns/{column_name}": {
+            "post": {
+                "responses": {
+                    200: {
+                        "description": "Success"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "column_name",
+                        "required": True,
+                        "in": "path",
+                        "type": "string"
+                    },
+                    {
+                        "name": "payload",
+                        "required": True,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/user_column_model"
+                        }
+                    }
+                ],
+                "tags": ["users"]
+            }
+        },
+        "/users/license": {
+            "post": {
+                "responses": {
+                    200: {
+                        "description": "Success"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": True,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/user_license_model"
+                        }
+                    }
+                ],
+                "tags": ["users"]
+            }
+        },
+        "/license": {
+            "post": {
+                "responses": {
+                    200: {
+                        "description": "Success"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": True,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/license_model"
+                        }
+                    }
+                ],
+                "tags": ["users"]
+            }
+        },
         "/tags": {
             "get": {
                 "responses": {
@@ -495,6 +560,10 @@ swagger = {
         {
             "name": "blobs",
             "description": "Namespace for blobs"
+        },
+        {
+            "name": "users",
+            "description": "Namespace for users"
         }
     ],
     "definitions": {
@@ -521,6 +590,56 @@ swagger = {
                 "value": {
                     "type": "string",
                     "description": "String representation of tag value"
+                }
+            },
+            "type": "object"
+        },
+        "user_column_model": {
+            "required": [
+                "field",
+                "default"
+            ],
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "description": "Peewee field type, example ['Char','Integer', 'Text', 'Float', 'Blob', ...]"
+                },
+                "default": {
+                    "type": "string",
+                    "description": "Default value"
+                },
+                "null": {
+                    "type": "boolean",
+                    "description": "Allow null values"
+                }
+            },
+            "type": "object"
+        },
+        "user_license_model": {
+            "required": [
+                "username",
+                "license_type"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "User to whom the license is generated"
+                },
+                "license_type": {
+                    "type": "string",
+                    "description": "license type"
+                }
+            },
+            "type": "object"
+        },
+        "license_model": {
+            "required": [
+                "license"
+            ],
+            "properties": {
+                "license": {
+                    "type": "string",
+                    "description": "License type"
                 }
             },
             "type": "object"
