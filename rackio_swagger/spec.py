@@ -47,6 +47,27 @@ swagger = {
                 ]
             }
         },
+        "/users": {
+            "get": {
+                "responses": {
+                    200: {
+                        "description": "Success"
+                    }
+                },
+                "tags": ["users"]
+            }
+        },
+        "/users/columns": {
+            "get": {
+                "responses": {
+                    200: {
+                        "description": "Success"
+                    }
+                },
+                "tags": ["users"]
+            }
+        },
+        
         "/tags": {
             "get": {
                 "responses": {
